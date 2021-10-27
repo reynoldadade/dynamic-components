@@ -44,7 +44,7 @@
           <button
             class="p-2 w-full bg-gray-400 text-white m-1"
             type="button"
-            @click.prevent="changeCurrentComponent('Personal')"
+            @click.prevent="setCurrentComponent('Personal')"
           >
             Previous <i class="fas fa-arrow-left"></i>
           </button>
@@ -64,7 +64,7 @@ export default {
       type: Function,
       default: () => {},
     },
-    changeCurrentComponent: {
+    setCurrentComponent: {
       type: Function,
       default: () => {},
     },
