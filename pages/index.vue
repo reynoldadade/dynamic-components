@@ -18,14 +18,7 @@
       <div class="">
         <!-- keep state of components  -->
         <keep-alive>
-          <Component
-            :is="currentComponent"
-            :personal="personal"
-            :work="work"
-            :save-personal-details="savePersonalDetails"
-            :save-work-details="saveWorkDetails"
-            :set-current-component="setCurrentComponent"
-          />
+          <Component :is="currentComponent" v-bind="changePropsByComponent" />
         </keep-alive>
       </div>
     </div>
@@ -54,6 +47,32 @@ export default {
       work: {},
     }
   },
+  // focus here
+  computed: {
+    changePropsByComponent() {
+      switch (this.currentComponent) {
+        case 'Personal':
+          return {
+            savePersonalDetails: this.savePersonalDetails,
+          }
+        case 'Work':
+          return {
+            saveWorkDetails: this.saveWorkDetails,
+            setCurrentComponent: this.setCurrentComponent,
+          }
+        case 'ViewSubmit':
+          return {
+            personal: this.personal,
+            work: this.work,
+          }
+
+        default:
+          return {}
+      }
+    },
+  },
+  // end
+
   methods: {
     setCurrentComponent(component) {
       this.currentComponent = component
